@@ -44,12 +44,45 @@
 
             <!-- Graph Card -->
             <div class="graph-card-wide mdl-card mdl-shadow--2dp">
-                <canvas id="chart2" width="400"></canvas>
+                <canvas id="chart2" height="200"></canvas>
                 <div class="mdl-card__graph-text">
                     <div class="mdl-layout-spacer"></div>
-                    <span>This is gud succ<span>
+                    <span>This is gud whole<span>
 
                 </div>
+            </div>
+
+            <!-- Good buy card -->
+            <div class="buy-card-wide mdl-shadow--2dp good-buy">
+                <div class="mdl-card__buy-text">
+                    <span>
+                        <i class="material-icons">done</i>
+                        &nbsp;This is a good buy based on your monetary history
+                    <span>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary-dark">Buy</button>
+            </div>
+
+            <!-- Average buy card -->
+            <div class="buy-card-wide mdl-shadow--2dp average-buy">
+                <div class="mdl-card__buy-text">
+                    <span>
+                        <i class="material-icons">warning</i>
+                        &nbsp;This is an average buy based on your monetary history
+                    <span>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary-dark">Buy</button>
+            </div>
+
+            <!-- Bad buy card -->
+            <div class="buy-card-wide mdl-shadow--2dp bad-buy">
+                <div class="mdl-card__buy-text">
+                    <span>
+                        <i class="material-icons">not_interested</i>
+                        &nbsp;This is not a good buy based on your monetary history. Please think before purchasing.
+                    <span>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary-dark">Buy</button>
             </div>
 
       </div>
@@ -99,70 +132,25 @@
         }
     });
 
-    var doughnutOptions = {
-    	//Boolean - Whether we should show a stroke on each segment
-    	segmentShowStroke : true,
-
-    	//String - The colour of each segment stroke
-    	segmentStrokeColor : "#fff",
-
-    	//Number - The width of each segment stroke
-    	segmentStrokeWidth : 2,
-
-    	//The percentage of the chart that we cut out of the middle.
-    	percentageInnerCutout : 50,
-
-    	//Boolean - Whether we should animate the chart
-    	animation : true,
-
-    	//Number - Amount of animation steps
-    	animationSteps : 100,
-
-    	//String - Animation easing effect
-    	animationEasing : "easeOutBounce",
-
-    	//Boolean - Whether we animate the rotation of the Doughnut
-    	animateRotate : true,
-
-    	//Boolean - Whether we animate scaling the Doughnut from the centre
-    	animateScale : true,
-
-    	//Function - Will fire on animation completion.
-    	onAnimationComplete : null
-    }
-
-
-    // Doughnut Chart Data
-    var doughnutData = [
-    	{
-    		value: 30,
-    		color:"white"
-    	},
-    	{
-    		value : 50,
-    		color : "#1789D4"
-    	},
-    	{
-    		value : 100,
-    		color : "#CB4B16"
-    	},
-    	{
-    		value : 40,
-    		color : "#1F8261"
-    	},
-    	{
-    		value : 120,
-    		color : "#FFA500"
-    	}
-
-    ]
-
-
-    //Get the context of the Doughnut Chart canvas element we want to select
-    var ctx = document.getElementById("chart2").getContext("2d");
-
-    // Create the Doughnut Chart
-    var mydoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+    var ctx = document.getElementById("chart2").getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ["M", "T", "W", "T", "F", "S", "S"],
+        datasets: [{
+          backgroundColor: [
+            "#2ecc71",
+            "#3498db",
+            "#95a5a6",
+            "#9b59b6",
+            "#f1c40f",
+            "#e74c3c",
+            "#34495e"
+          ],
+          data: [12, 19, 3, 17, 28, 24, 7]
+        }]
+      }
+    });
     </script>
 </body>
 

@@ -88,7 +88,7 @@
 }
 
 .mdl-card--horizontal {
-    margin: 2em;
+  margin: 2em;
   flex-direction: column;
   height: 1vh;
   /* 1 */
@@ -115,6 +115,8 @@
 }
 
 .graph-card-wide {
+    border-radius: 4px;
+    background-color: #ECEFF1;
     margin-top: 2em;
     width: 100%;
     padding: 0.6em;
@@ -125,6 +127,19 @@
 }
 
 .graph-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+
+.buy-card-wide {
+    border-radius: 4px;
+    background-color: #ECEFF1;
+    margin-top: 2em;
+    width: 98%;
+    padding: 0.6em;
+}
+
+
+.buy-card-wide > .mdl-card__menu {
   color: #fff;
 }
 
@@ -140,4 +155,46 @@
 
 .mdl-card__graph-text span {
     display: inline-block;
+}
+
+.mdl-card__buy-text span {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.mdl-card__buy-text {
+    padding: 0.8em;
+    font-weight: bold;
+}
+
+.buy-card-wide button {
+    width: 100px;
+    position: relative;
+}
+
+.good-buy {
+    background-color: #00C853;
+}
+
+.good-buy button {
+    background-color: #00E676;
+    color: #263238;
+}
+
+.average-buy {
+    background-color: #FDD835;
+}
+
+.average-buy button {
+    background-color: #FFC400;
+    color: #263238;
+}
+
+.bad-buy {
+    background-color: #D84315;
+}
+
+.bad-buy button {
+    background-color: #FF3D00;
+    color: #263238;
 }
