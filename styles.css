@@ -114,18 +114,30 @@
   width: auto;
 }
 
+.graph-card-wide {
+    margin-top: 2em;
+    width: 100%;
+    padding: 0.6em;
+}
+
 .graph-card-wide.mdl-card {
     width: 100%;
 }
-.graph-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('../assets/demos/welcome_card.jpg') center / cover;
-}
+
 .graph-card-wide > .mdl-card__menu {
   color: #fff;
 }
 
 .content-grid {
   max-width: 960px;
+}
+
+.mdl-card__graph-text {
+    text-align: center;
+    padding: 0.8em;
+    font-weight: bold;
+}
+
+.mdl-card__graph-text span {
+    display: inline-block;
 }
