@@ -76,11 +76,11 @@ if __name__ == "__main__":
     targets = []
     for i in range(0, 1000000000):
         rand = random.randint(0, 4)
-        targets.add(rand)
-        if(rand == 0): data.add(poor_big_spender())
-        elif if(rand == 1): data.add(saver_big_spender())
-        elif if(rand == 2): data.add(saver_small_spender())
-        else: data.add(average_spender())
+        targets.append(rand)
+        if(rand == 0): data.append(poor_big_spender())
+        elif (rand == 1): data.append(saver_big_spender())
+        elif (rand == 2): data.append(saver_small_spender())
+        else: data.append(average_spender())
 
     file = open('data.txt', 'w')
     file.write(json.dumps(data))
