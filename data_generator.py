@@ -1,4 +1,5 @@
 import random
+import json
 
 def poor_big_spender():
     data = [0,0,0,0,0,0]
@@ -71,5 +72,20 @@ def average_spender():
     return data
 
 if __name__ == "__main__":
-    for i in range(0, 100):
-        print(saver_big_spender())
+    data = []
+    targets = []
+    for i in range(0, 1000000000):
+        rand = random.randint(0, 4)
+        targets.add(rand)
+        if(rand == 0): data.add(poor_big_spender())
+        elif if(rand == 1): data.add(saver_big_spender())
+        elif if(rand == 2): data.add(saver_small_spender())
+        else: data.add(average_spender())
+
+    file = open('data.txt', 'w')
+    file.write(json.dumps(data))
+    file.close()
+
+    file = open('targets.txt', 'w')
+    file.write(json.dumps(targets))
+    file.close()
