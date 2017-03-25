@@ -1,3 +1,29 @@
+.container {
+    background-color: #4CAF50;
+    -webkit-transition: background-color 7s ease-in-out;
+    -moz-transition: background-color 7s ease-in-out;
+    -o-transition: background-color 7s ease-in-out;
+    -khtml-transition: background-color 7s ease-in-out;
+    transition: background-color 7s ease-in-out;
+}
+
+.circle {
+    width: 25vw;
+    height: 25vw;
+    border-radius: 99em;
+    background-color: black;
+    opacity: 0.2;
+    z-index: 5;
+    position: absolute;
+    top: 25%;
+    left: 37.5%;
+    -webkit-transition: background-color 3s ease-in-out;
+    -moz-transition: background-color 3s ease-in-out;
+    -o-transition: background-color 3s ease-in-out;
+    -khtml-transition: background-color 3s ease-in-out;
+    transition: background-color 3s ease-in-out;
+}
+
 .mdh-expandable-search {
   margin: 0 50px;
   align-items: center;
