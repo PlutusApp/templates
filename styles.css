@@ -43,10 +43,10 @@
   border: none;
   font-size: 16px;
   color: #FFFFFF;
-  background-color: #78909C;
+  background-color: #7986cb;
   padding: 0px 35px 0px 70px;
   height: 40px;
-  line-height: 40px; /* TODO: This was recommended for cross browser compatability of input height, check if its actually needed in modern browsers */
+  line-height: 40px;
 
   border-radius: 5px 5px 5px 5px;
   -moz-border-radius: 5px 5px 5px 5px;
