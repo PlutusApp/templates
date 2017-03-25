@@ -17,8 +17,9 @@
     <div id="gradient"></div>
 
 
-    <div class="mdl-layout mdl-js-layout container" id="particles-js">
+    <div class="mdl-layout mdl-js-layout container">
     	<main class="mdl-layout__content">
+            <div id="particles-js" style="position: fixed; z-index: -2; width: 100vw; height: 100vh"></div>
             <div class="content-grid mdl-grid">
                 <div class="mdl-cell"></div>
 
@@ -57,7 +58,7 @@
 
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particle-api-js/6.4.3/particle.min.js"></script>
+    <script src="particles.js"></script>
 
     <script>
     jQuery(function ($) {
@@ -82,6 +83,8 @@
             console.log('clearing')
             clearInterval(timer);
             timer = null;
+            $('#particles-js').fadeOut('slow');
+            $('.circle').css({background: '#4527A0'});
             $('.circle').animate({width:  $(window).width(), height:  $(window).height(), left: '0vw', top: '0vh', 'border-radius': '0em'},"slow", function() {
                 $('#loginform').fadeIn('slow', function() {
                     $('.circle').animate({'opacity': '1'}, 'slow');
