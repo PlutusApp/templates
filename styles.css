@@ -31,13 +31,19 @@
 }
 
 .mdh-expandable-search {
+    width: 90%;
   margin: 0 50px;
   align-items: center;
   justify-content: center;
 }
 
-.mdh-expandable-search form {
-  max-width: 600px;
+.mdh-expandable-search input {
+  max-width: 30%;
+  transition: all 0.3s cubic-bezier(.15,.49,.55,.91);
+}
+
+.mdh-expandable-search input:focus {
+  max-width: 100%;
 }
 
 .mdh-expandable-search,
