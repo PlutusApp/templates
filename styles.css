@@ -30,6 +30,10 @@
     transition: background-color 3s ease-in-out;
 }
 
+.mdl-layout__header {
+    transition: all 0.4s ease-in-out;
+}
+
 .mdh-expandable-search {
     width: 90%;
   margin: 0 50px;
