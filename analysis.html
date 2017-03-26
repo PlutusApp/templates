@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <!-- Graph Card -->
+            <!-- Graph Card 1-->
             <div class="graph-card-wide mdl-card mdl-shadow--2dp">
                 <canvas id="chart2" height="200"></canvas>
                 <div class="mdl-card__graph-text">
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <!-- Good buy card -->
+            <!-- Good buy card 2-->
             <div class="buy-card-wide mdl-shadow--2dp good-buy">
                 <div class="mdl-card__buy-text">
                     <span>
@@ -61,6 +61,16 @@
                     <span>
                 </div>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary-dark">Buy</button>
+            </div>
+
+            <!-- Graph Card 3-->
+            <div class="graph-card-wide mdl-card mdl-shadow--2dp">
+                <canvas id="chart3" height="200"></canvas>
+                <div class="mdl-card__graph-text">
+                    <div class="mdl-layout-spacer"></div>
+                    <span>This is gud whole<span>
+
+                </div>
             </div>
 
             <!-- Average buy card -->
@@ -102,10 +112,26 @@
         return Math.min.apply( Math, array );
     };
 
+    Array.average = function( array ){
+        var sum = 0;
+        array.forEach(function(el) { sum+=el });
+        sum/=array.length;
+        return sum;
+    }
+
     var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     var monthlyIncome = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500];
     var monthlyExpenditure = [250, 200, 100, 125, 100, 300, 95, 110, 200, 100, 115, 95];
     var monthlyAccountBalance = [5000, 6000, 5500, 4300, 4700, 6500, 5200, 5700, 6300, 6650, 6800, 7000];
+
+    //The first list is the name and price of the selected object. The next 1 or more are names and prices of the other top 4 choices
+    var productPrices = [
+        ['Selected shitty product', 40],
+        ['Good product 1', 10],
+        ['Good priduct 2', 15],
+        ['Good product 3', 25],
+        ['Good product 4', 20]
+    ]
 
     // MONTHLY INCOME VS MONTHLY EXPENDITURE
     var ctx = document.getElementById("chart1").getContext('2d');
@@ -183,6 +209,51 @@
         }
     });
 
+    //Monthly savings for products
+    var ds = [];
+    maxsave = 0;
+    minsave = Array.average(monthlyIncome)-Array.average(monthlyExpenditure);
+    for(var i = 0; i<productPrices.length; i++) {
+        var savings = [];
+        for(var j = 1; j<=12; j++) {
+            var mexp = (Array.average(monthlyExpenditure)+productPrices[i][1])*(1+Math.random()*0.075)
+            var minc = Array.average(monthlyIncome)
+            var save = minc-mexp
+            if(save>maxsave) maxsave = save;
+            if(save<minsave) minsave = save;
+            savings.push(save)
+        }
+        ds.push({
+            data: savings,
+            label: productPrices[i][0],
+            fill: false,
+            borderWidth: 2,
+            borderColor: i==0?'#d50000':'#00E676',
+            pointRadius: 1.5
+        });
+    }
+    var ctx3 = document.getElementById("chart3").getContext('2d');
+    var myChart = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: monthNames,
+            datasets: ds
+        },
+        options: {
+            responsive: true,
+            defaultFontColor: 'black',
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            max: maxsave*1.1,
+                            min: minsave*0.9
+                        }
+                    }
+                ]
+            }
+        }
+    });
 
     </script>
 </body>
