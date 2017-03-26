@@ -94,63 +94,96 @@
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
     <script>
-    var ctx = document.getElementById("chart1");
+    Array.max = function( array ){
+        return Math.max.apply( Math, array );
+    };
+
+    Array.min = function( array ){
+        return Math.min.apply( Math, array );
+    };
+
+    var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+    var monthlyIncome = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500];
+    var monthlyExpenditure = [250, 200, 100, 125, 100, 300, 95, 110, 200, 100, 115, 95];
+    var monthlyAccountBalance = [5000, 6000, 5500, 4300, 4700, 6500, 5200, 5700, 6300, 6650, 6800, 7000];
+
+    // MONTHLY INCOME VS MONTHLY EXPENDITURE
+    var ctx = document.getElementById("chart1").getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: monthNames,
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255,99,132,1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
+                data: monthlyIncome,
+                label: 'Monthly Income',
+                fill: false,
+                borderWidth: 2,
+                borderColor: '#00E676',
+                pointRadius: 1.5,
+                fill: true,
+                backgroundColor: 'rgba(0,230,118,0.3)'
+            },
+            {
+                data: monthlyExpenditure,
+                label: 'Monthly Expenditure',
+                fill: false,
+                borderWidth: 2,
+                borderColor: '#d50000',
+                pointRadius: 1.5,
+                fill: true,
+                backgroundColor: 'rgba(213,0,0,0.3)'
             }]
         },
         options: {
+            responsive: true,
+            defaultFontColor: 'black',
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
+                yAxes: [
+                    {
+                        ticks: {
+                            max: (Array.max(monthlyIncome)>Array.max(monthlyExpenditure)?Array.max(monthlyIncome): Array.max(monthlyExpenditure))*1.4
+                        }
                     }
-                }]
+                ]
             }
         }
     });
 
-    var ctx = document.getElementById("chart2").getContext('2d');
-    var myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ["M", "T", "W", "T", "F", "S", "S"],
-        datasets: [{
-          backgroundColor: [
-            "#2ecc71",
-            "#3498db",
-            "#95a5a6",
-            "#9b59b6",
-            "#f1c40f",
-            "#e74c3c",
-            "#34495e"
-          ],
-          data: [12, 19, 3, 17, 28, 24, 7]
-        }]
-      }
+    //Monthly account balance
+    var ctx2 = document.getElementById("chart2").getContext('2d');
+    var myChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: monthNames,
+            datasets: [{
+                data: monthlyAccountBalance,
+                label: 'Monthly Account Balance',
+                fill: false,
+                borderWidth: 2,
+                borderColor: '#00E676',
+                pointRadius: 1.5,
+                fill: true,
+                backgroundColor: 'rgba(0,230,118,0.3)'
+            }
+            ]
+        },
+        options: {
+            responsive: true,
+            defaultFontColor: 'black',
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            max: Array.max(monthlyAccountBalance)*1.3,
+                            min: Array.min(monthlyAccountBalance)*0.6
+                        }
+                    }
+                ]
+            }
+        }
     });
+
+
     </script>
 </body>
 
