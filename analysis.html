@@ -54,7 +54,7 @@
 
             <!-- Graph Card 3-->
             <div class="graph-card-wide mdl-card mdl-shadow--2dp">
-                <canvas id="chart3" height="400"></canvas>
+                <canvas id="chart3" height="600"></canvas>
                 <div class="mdl-card__graph-text">
                     <div class="mdl-layout-spacer"></div>
                     <span>This is gud whole<span>
@@ -118,6 +118,18 @@
         sum/=array.length;
         return sum;
     }
+
+    function toRGB(hex){
+        opacity = 10;
+        hex = hex.replace('#','');
+        r = parseInt(hex.substring(0,2), 16);
+        g = parseInt(hex.substring(2,4), 16);
+        b = parseInt(hex.substring(4,6), 16);
+
+        result = 'rgba('+r+','+g+','+b+','+opacity/100+')';
+        return result;
+    }
+
     var colors = ['#C51162', '#AA00FF', '#6200EA', '#304FFE', '#2962FF', '#0091EA', '#00B8D4', '#00BFA5', '#00C853', '#64DD17', '#AEEA00', '#FFD600', '#FFAB00', '#FF6D00', '#DD2C00'];
     var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     var monthlyIncome = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500];
@@ -223,18 +235,20 @@
             if(save<minsave) minsave = save;
             savings.push(save)
         }
+        var tempColor = i==0?'#d50000':colors[Math.floor(Math.random() * (colors.length))];
         ds.push({
             data: savings,
             label: productPrices[i][0],
-            fill: false,
+            fill: true,
             borderWidth: 2,
-            borderColor: i==0?'#d50000':colors[Math.floor(Math.random() * (colors.length+1))],
-            pointRadius: 1.5
+            borderColor: tempColor,
+            pointRadius: 1.5,
+            backgroundColor: toRGB(tempColor)
         });
     }
     var ctx3 = document.getElementById("chart3").getContext('2d');
     var myChart = new Chart(ctx3, {
-        type: 'line',
+        type: 'radar',
         data: {
             labels: monthNames,
             datasets: ds
@@ -243,14 +257,7 @@
             responsive: true,
             defaultFontColor: 'black',
             scales: {
-                yAxes: [
-                    {
-                        ticks: {
-                            max: maxsave*1.1,
-                            min: minsave*0.9
-                        }
-                    }
-                ]
+
             }
         }
     });
