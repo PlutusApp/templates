@@ -52,6 +52,16 @@
                 </div>
             </div>
 
+            <!-- Graph Card 3-->
+            <div class="graph-card-wide mdl-card mdl-shadow--2dp">
+                <canvas id="chart3" height="400"></canvas>
+                <div class="mdl-card__graph-text">
+                    <div class="mdl-layout-spacer"></div>
+                    <span>This is gud whole<span>
+
+                </div>
+            </div>
+
             <!-- Good buy card 2-->
             <div class="buy-card-wide mdl-shadow--2dp good-buy">
                 <div class="mdl-card__buy-text">
@@ -61,16 +71,6 @@
                     <span>
                 </div>
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary-dark">Buy</button>
-            </div>
-
-            <!-- Graph Card 3-->
-            <div class="graph-card-wide mdl-card mdl-shadow--2dp">
-                <canvas id="chart3" height="200"></canvas>
-                <div class="mdl-card__graph-text">
-                    <div class="mdl-layout-spacer"></div>
-                    <span>This is gud whole<span>
-
-                </div>
             </div>
 
             <!-- Average buy card -->
@@ -118,7 +118,7 @@
         sum/=array.length;
         return sum;
     }
-
+    var colors = ['#C51162', '#AA00FF', '#6200EA', '#304FFE', '#2962FF', '#0091EA', '#00B8D4', '#00BFA5', '#00C853', '#64DD17', '#AEEA00', '#FFD600', '#FFAB00', '#FF6D00', '#DD2C00'];
     var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     var monthlyIncome = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500];
     var monthlyExpenditure = [250, 200, 100, 125, 100, 300, 95, 110, 200, 100, 115, 95];
@@ -136,7 +136,7 @@
     // MONTHLY INCOME VS MONTHLY EXPENDITURE
     var ctx = document.getElementById("chart1").getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: monthNames,
             datasets: [{
@@ -228,7 +228,7 @@
             label: productPrices[i][0],
             fill: false,
             borderWidth: 2,
-            borderColor: i==0?'#d50000':'#00E676',
+            borderColor: i==0?'#d50000':colors[Math.floor(Math.random() * (colors.length+1))],
             pointRadius: 1.5
         });
     }
