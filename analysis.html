@@ -129,8 +129,7 @@
         return sum;
     }
 
-    function toRGB(hex){
-        opacity = 10;
+    function toRGB(hex, opacity){
         hex = hex.replace('#','');
         r = parseInt(hex.substring(0,2), 16);
         g = parseInt(hex.substring(2,4), 16);
@@ -168,10 +167,10 @@
                 label: 'Monthly Income',
                 fill: false,
                 borderWidth: 2,
-                borderColor: '#00E676',
+                borderColor: '#3F51B5',
                 pointRadius: 1.5,
                 fill: true,
-                backgroundColor: 'rgba(0,230,118,0.3)'
+                backgroundColor: toRGB('#3F51B5', 30)
             },
             {
                 data: monthlyExpenditure,
@@ -210,10 +209,10 @@
                 label: 'Monthly Account Balance',
                 fill: false,
                 borderWidth: 2,
-                borderColor: '#00E676',
+                borderColor: '#3F51B5',
                 pointRadius: 1.5,
                 fill: true,
-                backgroundColor: 'rgba(0,230,118,0.3)'
+                backgroundColor: toRGB('#3F51B5', 30)
             }
             ]
         },
@@ -255,7 +254,7 @@
             borderWidth: 2,
             borderColor: tempColor,
             pointRadius: 1.5,
-            backgroundColor: toRGB(tempColor)
+            backgroundColor: toRGB(tempColor, 10)
         });
     }
     var ctx3 = document.getElementById("chart3").getContext('2d');
@@ -285,10 +284,10 @@
                 label: 'Your Monthly Expenditure',
                 fill: false,
                 borderWidth: 2,
-                borderColor: '#00E676',
+                borderColor: '#3F51B5',
                 pointRadius: 1.5,
                 fill: true,
-                backgroundColor: 'rgba(0,230,118,0.3)'
+                backgroundColor: toRGB('#3F51B5', 30)
             },
             {
                 data: globalMonthlyExpenditure,
