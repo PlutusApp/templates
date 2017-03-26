@@ -62,6 +62,16 @@
                 </div>
             </div>
 
+            <!-- Graph Card 4-->
+            <div class="graph-card-wide mdl-card mdl-shadow--2dp">
+                <canvas id="chart4" height="400"></canvas>
+                <div class="mdl-card__graph-text">
+                    <div class="mdl-layout-spacer"></div>
+                    <span>This is gud whole<span>
+
+                </div>
+            </div>
+
             <!-- Good buy card 2-->
             <div class="buy-card-wide mdl-shadow--2dp good-buy">
                 <div class="mdl-card__buy-text">
@@ -135,6 +145,8 @@
     var monthlyIncome = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500];
     var monthlyExpenditure = [250, 200, 100, 125, 100, 300, 95, 110, 200, 100, 115, 95];
     var monthlyAccountBalance = [5000, 6000, 5500, 4300, 4700, 6500, 5200, 5700, 6300, 6650, 6800, 7000];
+
+    var globalMonthlyExpenditure = [300, 450, 375, 500, 445, 315, 495, 360, 515, 375, 420, 480];
 
     //The first list is the name and price of the selected object. The next 1 or more are names and prices of the other top 4 choices
     var productPrices = [
@@ -258,6 +270,48 @@
             defaultFontColor: 'black',
             scales: {
 
+            }
+        }
+    });
+
+    //User's monthly expenditure vs global average monthly expenditure
+    var ctx4 = document.getElementById("chart4").getContext('2d');
+    var myChart = new Chart(ctx4, {
+        type: 'bar',
+        data: {
+            labels: monthNames,
+            datasets: [{
+                data: monthlyExpenditure,
+                label: 'Your Monthly Expenditure',
+                fill: false,
+                borderWidth: 2,
+                borderColor: '#00E676',
+                pointRadius: 1.5,
+                fill: true,
+                backgroundColor: 'rgba(0,230,118,0.3)'
+            },
+            {
+                data: globalMonthlyExpenditure,
+                label: 'Average Person\'s Monthly Expenditure',
+                fill: false,
+                borderWidth: 2,
+                borderColor: '#d50000',
+                pointRadius: 1.5,
+                fill: true,
+                backgroundColor: 'rgba(213,0,0,0.3)'
+            }]
+        },
+        options: {
+            responsive: true,
+            defaultFontColor: 'black',
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            max: (Array.max(monthlyExpenditure)>Array.max(globalMonthlyExpenditure)?Array.max(monthlyExpenditure): Array.max(globalMonthlyExpenditure))*1.4
+                        }
+                    }
+                ]
             }
         }
     });
